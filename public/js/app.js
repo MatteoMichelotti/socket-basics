@@ -1,5 +1,5 @@
 var name = getQueryVariable("name") || "Anonymous";
-var room = getQueryVariable("room");
+var room = getQueryVariable("room") || "Lobby";
 console.log(name + " wants to join " + room);
 
 var socket = io();
@@ -7,6 +7,8 @@ var socket = io();
 var $form = $("#message-form");
 var $messageInput = $("input[name=message]");
 var $chat = $("#chat");
+
+$("#room-title").text(room);
 
 //On received connection from the server
 socket.on("connect", function() {
@@ -18,7 +20,7 @@ socket.on("message", function (data){
 	var time = moment.utc(data.timestamp).local().format("HH:mm");
 
 	$chat.append("<strong>["+ data.author +
-				 "] " +time + " -</strong> " +
+				 "] " + time + " -</strong> " +
 				 data.text + "<br>");
 });
 
