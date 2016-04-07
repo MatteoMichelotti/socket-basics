@@ -9,13 +9,13 @@ socket.on("connect", function() {
 });
 
 socket.on("message", function (data){
-	console.log("New message: " + data.text);
-
-	$chat.append("> " + data.text + "<br>");
+	var message = data.text;
+	var time = moment.utc(data.timestamp).local().format("hh:mm a");
+	$chat.append("<strong>"+ time + " -</strong> " +
+				 message + "<br>");
 });
 
 // Handles submitting of new message
-
 $form.on("submit", function (event){
 	event.preventDefault();
 
