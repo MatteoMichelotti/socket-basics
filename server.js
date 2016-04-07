@@ -17,12 +17,14 @@ io.on("connection", function (socket){
 
 		io.emit("message", {
 			text: message.text,
+			author: message.author,
 			timestamp: +moment()
 		});
 	});
 
 	socket.emit("message", {
 		text: "Welcome to the chat application!",
+		author: "System",
 		timestamp: +moment()
 	});
 });
