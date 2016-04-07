@@ -34,6 +34,20 @@ io.on("connection", function (socket){
 		});
 	});
 
+	socket.on("disconnect", function (){
+		var info = clientInfo[socket.id];
+
+		if (info){
+			socket.leave(info.room);
+			io.to(info.room).emit("message", {
+				text: info.name + " disconnected!",
+				name: "System",
+				timestamp: +moment()
+			});
+			delete clientInfo[socket.id];
+		}			
+	});
+
 	socket.emit("message", {
 		text: "Welcome to the chat application!",
 		name: "System",
