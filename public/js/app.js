@@ -24,7 +24,7 @@ socket.on("connect", function() {
 socket.on("message", function (data){
 	var time = moment.utc(data.timestamp).local().format("HH:mm");
 
-	$chat.append("<strong>["+ data.author +
+	$chat.append("<strong>["+ data.name +
 				 "] " + time + " -</strong> " +
 				 data.text + "<br>");
 });
@@ -35,7 +35,7 @@ $form.on("submit", function (event){
 
 	socket.emit("message", {
 		text: $messageInput.val(),
-		author: name
+		name: name
 	});
 
 	$messageInput.val("");

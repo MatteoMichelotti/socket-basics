@@ -18,7 +18,7 @@ io.on("connection", function (socket){
 		clientInfo[socket.id] = req;
 		socket.join(req.room);
 		socket.broadcast.to(req.room).emit("message", {
-			author: "System",
+			name: "System",
 			text: req.name + " has joined the room!",
 			timestamp: +moment()
 		})
@@ -29,14 +29,14 @@ io.on("connection", function (socket){
 
 		io.to(clientInfo[socket.id].room).emit("message", {
 			text: message.text,
-			author: message.author,
+			name: message.name,
 			timestamp: +moment()
 		});
 	});
 
 	socket.emit("message", {
 		text: "Welcome to the chat application!",
-		author: "System",
+		name: "System",
 		timestamp: +moment()
 	});
 });
