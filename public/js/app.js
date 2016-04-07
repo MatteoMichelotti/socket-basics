@@ -13,6 +13,11 @@ $("#room-title").text(room);
 //On received connection from the server
 socket.on("connect", function() {
 	console.log("Connected to Socket.io server!");
+
+	socket.emit("joinRoom", {
+		name: name,
+		room: room
+	});
 });
 
 //On received 'message' from the server
