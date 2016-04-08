@@ -49,7 +49,7 @@ io.on("connection", function (socket){
 			case 0:
 				//@currentUsers
 				socket.emit("message", {
-					text: "Current users:" + getCurrentUsers(socket),
+					text: "Current users: " + getCurrentUsers(socket),
 					name: "System",
 					timestamp: +moment()
 				});

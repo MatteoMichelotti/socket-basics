@@ -24,9 +24,9 @@ socket.on("connect", function() {
 socket.on("message", function (data){
 	var time = moment.utc(data.timestamp).local().format("HH:mm");
 
-	$chat.append("<strong>["+ data.name +
-				 "] " + time + " -</strong> " +
-				 data.text + "<br>");
+	$chat.append("<li class='list-group-item'><strong>"+ data.name +
+				 " (" + time + ")</strong><br>" +
+				 data.text + "</li>");
 });
 
 //On 'submit' of form, send data to the server
